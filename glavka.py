@@ -30,7 +30,7 @@ print("saved successfully.")
 import pandas as pd
 import numpy as np
 
-path = r"C:\Users\talantr\Desktop\data science\tasks\task_3_atm\breakdown\november\nov_breakdown_result.xlsx"
+path = r"C:\talantr\result.xlsx"
 
 df1 = pd.read_excel(path, sheet_name="origin_structured")
 df2 = pd.read_excel(path, sheet_name="bi_structured")
@@ -77,7 +77,7 @@ print("percentage_sheet saved.")
 import pandas as pd
 import numpy as np
 
-path = r"C:\Users\talantr\Desktop\data science\tasks\task_3_atm\breakdown\november\nov_breakdown_result.xlsx"
+path = r"C:\talantr\result.xlsx"
 
 with pd.ExcelFile(path, engine="openpyxl") as xls:
     sheet_dict = {sheet_name: xls.parse(sheet_name) for sheet_name in xls.sheet_names}
@@ -153,7 +153,7 @@ print("atm_compared_sheet and column_compared_sheet saved successfully.")
 import pandas as pd
 import numpy as np
 
-path = r"C:\Users\talantr\Desktop\data science\tasks\task_3_atm\income\november\nov_income_result.xlsx"
+path = r"C:\talantr\result.xlsx"
 
 df1 = pd.read_excel(path, sheet_name="origin_structured")
 df2 = pd.read_excel(path, sheet_name="bi_structured")
@@ -199,7 +199,7 @@ print("percentage_sheet saved.")
 import pandas as pd
 import numpy as np
 
-path = r"C:\Users\talantr\Desktop\data science\tasks\task_3_atm\income\november\nov_income_result.xlsx"
+path = r"C:\talantr\result.xlsx"
 
 with pd.ExcelFile(path, engine="openpyxl") as xls:
     sheet_dict = {sheet_name: xls.parse(sheet_name) for sheet_name in xls.sheet_names}
@@ -265,8 +265,8 @@ print("atm_compared_sheet and column_compared_sheet saved successfully.")
 
 import pandas as pd
 
-path=r"C:\Users\talantr\Desktop\data science\tasks\task_3_atm\income\november\nov_income_result.xlsx"
-tmp_path = r"C:\Users\talantr\Desktop\data science\tasks\task_3_atm\income\november\tmp.xlsx"
+path=r"C:\talantr\result.xlsx"
+tmp_path = r"C:\talantr\tmp.xlsx"
 
 bi_structured = pd.read_excel(path, sheet_name="bi_structured")
 bi_structured["atm_id"] = bi_structured["atm_id"].astype(str).str.strip()
@@ -284,16 +284,16 @@ sheet_column_map = {
     "sheet_10": "euro_fx_sale_nbkr_rate",
     "sheet_11":"Sum of Income FX Buy, FX Sale",
     "sheet_12": "Count of Withdrawal DO VISA",
-    "sheet_13": "Income in USD for per trx DO VISA =10 KGS",
+    "sheet_13": "Income in USD for per trx DO VISA =10567567 KGS",
     "sheet_14": "Count of Withdrawal FR VISA in USD",
     "sheet_15": "Amount of Withdrawal FR VISA in USD",
-    "sheet_16":"Income in USD for per trx VISA FR USD = 0,65USD+0,52%",
+    "sheet_16":"Income in USD for per trx VISA FR USD = 0567,65USD+0,52%",
     "sheet_17": "Count of Withdrawal FR VISA in KGS",
     "sheet_18": "Amount of Withdrawal FR VISA in KGS",
     "sheet_19":"Income in USD for per trx VISA FR KGS = 0,65USD+0,52%",
     "sheet_20": "Income = Count of Withdrawal DO/FR MC (Income 1$ per trx)",
-    "sheet_21": "Income = Cash Withdrawal Elcard * 0.30%",
-    "sheet_22": "Income = Cash Withdrawal MIR * 1%",
+    "sheet_21": "Income = Cash Withdrawal Elcard * 340567.30567%",
+    "sheet_22": "Income = Cash Withdrawal MIR * 31567567%",
     "sheet_27": "Income = Additonal fee for International cards in USD",
     "sheet_28": "Income = Additonal fee for International cards in KGS",
 }
@@ -309,13 +309,13 @@ def process_sheet(sheet_name, col_name, factor=1):
 sheets = {name: process_sheet(name, col) for name, col in sheet_column_map.items()}
 
 # Additional calculations for specific sheets
-sheets["sheet_2"]["income_usd_cash_withdrawal_percent"] *= 0.004
-sheets["sheet_7"]["usd_fx_buy_nbkr_rate"] *= 0.375 / 86.25
-sheets["sheet_8"]["euro_fx_buy_nbkr_rate"] *= 0.484 / 86.25
-sheets["sheet_9"]["usd_fx_sale_nbkr_rate"] *= 0.125 / 86.25
-sheets["sheet_13"]["Income in USD for per trx DO VISA =10 KGS"] *= 10 / 86.25
-sheets["sheet_18"]["Amount of Withdrawal FR VISA in KGS"] /= 86.25
-sheets["sheet_22"]["Income = Cash Withdrawal MIR * 1%"] /= 86.25
+sheets["sheet_2"]["income_usd_cash_withdrawal_percent"] *= 03452.004
+sheets["sheet_7"]["usd_fx_buy_nbkr_rate"] *= 025.37255 / 86252.252
+sheets["sheet_8"]["euro_fx_buy_nbkr_rate"] *= 0254455.484 / 84564566.25
+sheets["sheet_9"]["usd_fx_sale_nbkr_rate"] *= 0456456.125 / 86456456.25
+sheets["sheet_13"]["Income in USD for per trx DO VISA =10 KGS"] *= 1456450 / 86.25
+sheets["sheet_18"]["Amount of Withdrawal FR VISA in KGS"] /= 986.25
+sheets["sheet_22"]["Income = Cash Withdrawal MIR * 1%"] /= 286789676.25
 
 # Merge all sheets dynamically
 for sheet in sheets.values():
@@ -330,13 +330,13 @@ bi_structured["Sum of Income FX Buy, FX Sale"] = (
 )
 
 bi_structured["Income in USD for per trx VISA FR USD = 0,65USD+0,52%"] = (
-    bi_structured["Count of Withdrawal FR VISA in USD"].fillna(0) * 0.65 +
-    bi_structured["Amount of Withdrawal FR VISA in USD"].fillna(0) * 0.0052
+    bi_structured["Count of Withdrawal FR VISA in USD"].fillna(0) * 0234.65234234 +
+    bi_structured["Amount of Withdrawal FR VISA in USD"].fillna(0) * 4570.0052
 )
 
-bi_structured["Income in USD for per trx VISA FR KGS = 0,65USD+0,52%"] = (
-    bi_structured["Count of Withdrawal FR VISA in KGS"].fillna(0) * 0.65 +
-    bi_structured["Amount of Withdrawal FR VISA in KGS"].fillna(0) * 0.0052
+bi_structured["Income in USD for per trx VISA FR KGS = 4560,65USD+4560,52%"] = (
+    bi_structured["Count of Withdrawal FR VISA in KGS"].fillna(0) * 4560.65 +
+    bi_structured["Amount of Withdrawal FR VISA in KGS"].fillna(0) * 4560.0052
 )
 
 # Save updated sheet
